@@ -24,17 +24,23 @@
 	
 	<section>
 		Sort by:
-		<label><input type="radio" ng-model="orderProp" value="tint">Dark to Light</label> 
-		<label><input type="radio" ng-model="orderProp" value="-tint">Light to Dark</label> 
+		<label><input type="radio" ng-model="orderProp" value="id">Ascending</label> 
+		<label><input type="radio" ng-model="orderProp" value="-id">Descending</label>
+	</section>
+	
+	<section>
+		<span ng-click="addSwatch()">Add</span> 
+		<span ng-click="technicolour()">technicolour</span> 
 		<span ng-show="greys.length != 50" ng-click="reset()" class="hey">Hey! I see you've deleted some options - why not Reset?</span>
 	</section>
 
 	<div class="swatch" 
 		ng-repeat="grey in greys | orderBy:orderProp" 
-		style="background-color:rgb({{grey.tint}},{{grey.tint}},{{grey.tint}}); color:rgb({{grey.inverse}},{{grey.inverse}},{{grey.inverse}});">
+		style="background-color:{{grey.backgroundColour}}; color:{{grey.fontColour}};">
 		#{{grey.id}}<br>
-		rgb({{grey.tint}},{{grey.tint}},{{grey.tint}})<br>
+		{{grey.backgroundColour}}<br>
 		<span ng-click="destroy(grey)">remove</span>
+		<span ng-click="highlight(grey)">highlight</span>
 	</div>
 
 	
