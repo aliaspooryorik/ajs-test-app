@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Adding a row to a table</title>
+	<style>
+	body {font-family:Arial}
+	div.product {width:150px; padding:30px; float:left; color:black; border:1px solid #d0d0d0}
+	div.product span { color:red; cursor:pointer; }
+	span.hey { color:red; cursor:pointer; }
+	footer, section { clear:both }
+	</style>
+	<script src="js/angular-1.0.1.js"></script>
+	<script src="js/controllers.js"></script>
+</head>
+<body ng-app ng-controller="FormCtrl">
+
+	<h1>My Form</h1>
+	<p>Showing {{tracks.length}} rows</p>
+	
+	<form>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Track</th>
+					<th scope="col">Album</th>
+					<th scope="col">Artist</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="track in tracks" >
+					<td><input name="name" value="{{track.name}}"></td>
+					<td><input name="album" value="{{track.album}}"></td>
+					<td>
+						<select ng-model="template" ng-options="artist.name for artist in artists"></select>
+					</td>
+					<td ng-click="removeTrack(track)">x</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	
+	<button ng-click="addTrack()">Add Row</button>
+	
+	<h2>JSON</h2>
+	<pre>{{tracks | json}}</pre>
+
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5518393-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+</body>
+</html>

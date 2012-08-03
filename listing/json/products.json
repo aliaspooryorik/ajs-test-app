@@ -1,0 +1,6 @@
+[
+	{ "id":"123", "title":"Squirrel Factory Underpants", "price":9.99, "summary":"Extra baggy", "recommended":false },
+	{ "id":"914", "title":"ColdFusion T-Shirt", "price":19.49, "summary":"ColdFusion Lives!", "recommended":true },
+	{ "id":"666", "title":"Apple MacBook Pro SSD", "price":3990.49, "summary":"Fast, pretty and very expensive", "recommended":false },
+	{ "id":"1", "title":"Zebedee soft toy", "price":7.99, "summary":"Boing! Time for bed!", "recommended":true }
+]
