@@ -22,9 +22,19 @@ function FormCtrl($scope) {
 	];
 	
 	// this would normally be loaded from a webservice as JSON
-	$scope.tracks = [];
-	$scope.tracks.push( new Track( 'Rhinestone Cowboy', 'David Hasselhoff', 'Sings America' ) );
-	$scope.tracks.push( new Track( 'Private Dancer', 'Tina Turner', 'Tina!' ) );
+	$scope.tracks = [
+		{
+			"name": "Rhinestone Cowboy",
+			"artist": $scope.artists[0],
+			"album": "Sings America"
+		},
+		{
+			"name": "Private Dancer",
+			"artist": $scope.artists[1],
+			"album": "Tina!"
+		}
+	];
+	
 }
 
 

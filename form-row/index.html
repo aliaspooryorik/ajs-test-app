@@ -33,7 +33,7 @@
 					<td><input name="name" value="{{track.name}}"></td>
 					<td><input name="album" value="{{track.album}}"></td>
 					<td>
-						<select ng-model="template" ng-options="artist.name for artist in artists"></select>
+						<select ng-model="artist" ng-options="artist.name for artist in artists"></select>
 					</td>
 					<td ng-click="removeTrack(track)">x</td>
 				</tr>
@@ -45,6 +45,7 @@
 	
 	<h2>JSON</h2>
 	<pre>{{tracks | json}}</pre>
+	<pre>{{artist | json}}</pre>
 
 
 <script type="text/javascript">
