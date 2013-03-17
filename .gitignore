@@ -1,4 +1,4 @@
-.idea/*
-.settings/*
-.project
-settings.xml
+/.idea
+/.settings
+/.project
+/settings.xml
