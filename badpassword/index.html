@@ -1,0 +1,77 @@
+<html lang="en">
+	<head>
+		<title>Bad Password</title>
+		<script src="lib/angular/angular.js"></script>
+  		<script src="js/controllers.js"></script>
+	</head>
+	<body ng-app="badpasswordapp">
+		
+		<div ng-controller="PasswordCtrl">
+			<p>{{($scope.passwords | filter:query).length}} passwords match</p>
+			<div>Type Password: <input type="text" ng-model="query"></div>
+			
+			<ul ng-hide="">
+	        	<li data-ng-repeat="password in passwords | filter:query" style="display:{{$scope.cssdisplay}}; height:50px; width:100px; float:{{$scope.cssfloat}}; border:2px solid red;">
+					{{password}}
+				</li>
+			</ul>
+		</div>
+		
+		
+<!--
+notes for generating bad passwords:
+
+movie / game character: 007 / mario 
+names : 007 / 
+DOB: june2012
+sports star : cronaldo / messi10
+put an "!" at the end
+l33t
+teams: gooner:arsenal
+tomjerry
+picard
+NCC-1701
+
+taken from http://www.whatsmypass.com/the-top-500-worst-passwords-of-all-time
+
+
+http://pastebin.com/5pjjgbMt
+
+Top 10 base words
+link = 1808 (0.13%)
+alex = 1215 (0.09%)
+mike = 1146 (0.08%)
+june = 1065 (0.08%)
+july = 891 (0.07%)
+john = 882 (0.07%)
+chris = 766 (0.06%)
+love = 749 (0.06%)
+april = 725 (0.05%)
+mark = 669 (0.05%)
+ 
+Password length (length ordered)
+6 = 281193 (20.75%)
+7 = 211946 (15.64%)
+8 = 444338 (32.79%)
+9 = 203826 (15.04%)
+10 = 121783 (8.99%)
+11 = 51138 (3.77%)
+12 = 24377 (1.8%)
+13 = 9237 (0.68%)
+14 = 4237 (0.31%)
+15 = 1688 (0.12%)
+16 = 1112 (0.08%)
+17 = 37 (0.0%)
+18 = 22 (0.0%)
+19 = 7 (0.0%)
+20 = 8 (0.0%)
+21 = 3 (0.0%)
+22 = 4 (0.0%)
+23 = 4 (0.0%)
+24 = 2 (0.0%)
+27 = 2 (0.0%)
+34 = 2 (0.0%)
+40 = 2 (0.0%)
+		-->
+	</body>
+</html>

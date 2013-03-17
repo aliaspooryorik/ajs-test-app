@@ -1,0 +1,24 @@
+<html lang="en">
+	<head>
+		<title>Bad Password</title>
+		<script src="lib/angular/angular.js"></script>
+  		<script src="js/controllers.js"></script>
+		
+	</head>
+	<body ng-app="badpasswordapp">
+		
+		<div ng-controller="Ctrl">
+			
+			<div>Bad Password: <input type="text" ng-model="query"></div>
+			
+			<p ng-hide="{{(badclean | filter:query).length>10}}">truthy: {{(badclean | filter:query).length > 10 }}</p>
+	
+			<ul data-ng-show="{{(badclean | filter:query).length>10}}">
+	        	<li data-ng-repeat="password in badclean | filter:query">
+					{{password}}
+				</li>
+			</ul>
+		</div>
+				
+	</body>
+</html>
