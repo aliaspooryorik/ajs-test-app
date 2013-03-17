@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+</head>
+<body>
+
+<h2>Watch</h2>
+<div ng-app ng-controller="MyCtrl">
+    <input type="text" ng-model="name" placeholder="guess my name">
+    <p>{{greeting}}</p>
+</div>
+
+<script>
+    function MyCtrl ($scope){
+        var myname = 'john';
+        $scope.greeting = '';
+        $scope.$watch('name', function(newValue, oldValue) {
+            console.log([newValue,oldValue]);
+            //console.info(angular.equals(newValue,oldValue));
+            newValue = newValue ? newValue : ''; //undefined 1st time
+            if (angular.lowercase(newValue) === myname){
+                $scope.greeting = 'Correct! My name is ' + myname;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

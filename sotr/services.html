@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>Services Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <style>
+        div { border:1px solid #d0d0d0; border-radius: 5px; padding:5px; box-shadow: 5px 5px 2px #888; margin-bottom:10px; }
+    </style>
+</head>
+<body>
+
+<div ng-controller="ListCtrl">
+    <ul ng-repeat="user in users">
+        <li ng-click="show(user)">{{user.name}}</li>
+    </ul>
+</div>
+
+<div class="nested" ng-controller="UserCtrl">
+    User: {{theUser.name}}, plays {{theUser.instrument}}
+</div>
+
+<script>
+var app = angular.module("MyApp", []);
+// factory creates singleton
+app.factory("UserService", function() {
+    var users = [
+        {id:1, name:"John", instrument:"Guitar"},
+        {id:2, name:"Paul", instrument:"Bass"},
+        {id:3, name:"George", instrument:"Guitar"},
+        {id:4, name:"Ringo", instrument:"Drums"}
+    ];
+    return {
+        all: function() {
+            return users;
+        },
+        get: function(selectedUser) {
+            return users[selectedUser];
+        }
+    };
+});
+// note dependency injection
+app.controller("ListCtrl", function($scope, UserService) {
+    $scope.users = UserService.all();
+});
+
+app.controller("UserCtrl", function($scope, UserService) {
+    $scope.theUser = UserService.get(0);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="vendor/angular.min.js"></script>
+    <style>
+        input {display:block}
+        input.ng-invalid-required {background:lightpink;}
+        input.ng-invalid-email {background:yellow}
+        .ng-invalid {border:1px solid red;}
+        .ng-valid {border:1px solid green;}
+    </style>
+    <title></title>
+</head>
+<body ng-app ng-controller="MyCtrl">
+
+<form name="theForm" ng-submit="submit()">
+    <input type="text" name="forename" ng-model="user.forename" placeholder="forename" required>
+    <p ng-show="theForm.forename.$invalid && theForm.forename.$isdirty">surname is required</p>
+
+    <input type="text" name="surname" ng-model="user.surname" placeholder="surname" required>
+    <p ng-show="theForm.surname.$invalid && theForm.surname.$isdirty">surname is required</p>
+
+    <input type="email" name="email" ng-model="user.email" placeholder="email" required>
+    <p ng-show="form.email.$invalid && form.email.$dirty">Email is required</p>
+
+    <button>Submit</button>
+
+    <p>Is the form valid? {{theForm.$valid}}</p>
+    <p>form has errors@ {{theForm.$error}}</p>
+</form>
+
+<pre>{{user | json}}</pre>
+
+<script>
+function MyCtrl($scope){
+    $scope.user = {
+        forename: "John",
+        surname: "Whish",
+        email: "john.whish@gmail.com"
+    }
+}
+</script>
+</body>
+</html>

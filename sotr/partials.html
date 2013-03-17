@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <script src="vendor/angular.min.js"></script>
+</head>
+<body ng-app="PartialsApp">
+
+<div ng-controller="PostsCtrl" >
+
+    <button ng-click="load()">load data</button>
+
+    <ul>
+        <li ng-repeat="presso in presentations" ng-click="feature(presso)">{{presso.title}}</li>
+    </ul>
+
+    <div ng-show="featured">
+        <h2>{{featured.title}}</h2>
+        <p>by {{featured.speaker}}</p>
+    </div>
+ </div>
+
+<script>
+var app = angular.module("PartialsApp", []);
+// note for minify need to do:
+
+app.factory("PresentationService", function($http) {
+    var json = [];
+    $http
+        .get('data/presentations.json')
+        .success(function(data, status, headers, config) {
+                json = data;
+                console.log(data);
+        });
+
+    return {
+        all: function() {
+            return json;
+        }
+    }
+});
+//PresentationService.$inject = ['$http'];
+
+app.controller("PostsCtrl", function($scope, PresentationService) {
+    $scope.load = function (){
+        $scope.presentations = PresentationService.all();
+    }
+    $scope.feature = function(presso){
+        $scope.featured = presso;
+    }
+
+    $scope.load();
+});
+</script>
+</body>
+</html>
