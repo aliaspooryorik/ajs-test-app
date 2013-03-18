@@ -1,0 +1,176 @@
+<section>
+	<form>
+		<h1>CD listing</h1>
+		<table summary="track listing">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Track</th>
+					<th scope="col">Remove</th>
+				</tr>
+			</thead>
+			<tbody id="tracklisting">
+			</tbody>
+		</table>
+		
+		<input type="submit" value="submit to server">
+	</form>
+	<button id="addTrack">Add Track</button>
+	
+	<h2>JSON</h2>
+	<pre id="json"></pre>
+</section>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.8.0.min.js"></script>
+
+<!--- JavaScript Template for the row --->
+<script id="trackrow" type="text/html">
+	<tr data-row="<%=id%>">
+		<td><%=id%></td>
+		<td><input name="name[<%=id%>]" value="<%=name%>"></td>
+		<td class="removeTrack">x</td>
+	</tr>
+</script>
+
+<script type="text/javascript">
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+  
+  this.tmpl = function tmpl(str, data){
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(str) ?
+      cache[str] = cache[str] ||
+        tmpl(document.getElementById(str).innerHTML) :
+      
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+        
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+        
+        // Convert the template into pure JavaScript
+        str
+          .replace(/[\r\t\n]/g, " ")
+          .split("<%").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)%>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("%>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+    
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+
+
+jQuery(function($){
+	var $tracklisting = $("#tracklisting");
+	var rowTemplate = tmpl("trackrow");
+	var rowhtml = "";
+	var myTracks = [];
+	
+	// track object
+	var Track = function(id, name){
+		this.id = id || 0;
+		this.name = name || '';
+	}
+	
+	// add track
+	var addTrack = function(newtrack){
+		if (typeof newtrack === 'undefined'){
+			 newtrack = new Track();
+		}
+		myTracks.push(newtrack);
+		// update view
+		rowhtml = rowTemplate(newtrack);
+		$tracklisting.append(rowhtml);
+		
+		debug();
+	}
+	
+	// remove track
+	var removeTrack = function(Track){
+		var index = myTracks.indexOf(Track);
+		myTracks.splice(index, 1);
+		
+		debug();
+	}
+	
+	// convert form into JSON to submit back to server
+	var save = function(el){
+		$.ajax({
+			type: 'POST',
+			url: 'tracks.json',
+			dataType: 'json',
+			data: myTracks,
+			success: function(data){
+				console.log('saved');
+			}
+		});
+	}
+	
+	/*
+	-------------------------------
+	BINDINGS
+	-------------------------------
+	*/
+	
+	// bind removeTrack
+	$($tracklisting).on("click", "td.removeTrack", function(e){
+		removeTrack($(this).parents("tr").remove());
+		e.preventDefault();
+	});
+	
+	// bind addTrack
+	$('#addTrack').bind('click', function(e){
+		addTrack();
+		e.preventDefault();
+	});
+	
+	// bind submit
+	$('form').bind('submit', function(e){
+		save(this);
+		e.preventDefault();
+	});
+	
+	// bind track name
+	$('input').bind('blur', function(e){
+		console.log(this);
+		e.preventDefault();
+	});
+	
+		
+	/*
+	-------------------------------
+	POPULATE FORM
+	-------------------------------
+	*/
+	$.getJSON('tracks.json',function(data){
+		// loop over JSON and add row for each track
+		$.each(data, function(i,v){
+			addTrack(v);
+		});
+	});
+	
+	/*
+	-------------------------------
+	FOR DEMO ONLY
+	-------------------------------
+	*/
+	var debug = function(){
+		$('#json').empty().text(JSON.stringify(myTracks, null, '  '));
+	}
+	
+
+	
+});
+</script>
+
+

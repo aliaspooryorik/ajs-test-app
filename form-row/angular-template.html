@@ -1,0 +1,57 @@
+<section ng-app ng-controller="FormCtrl">
+	<form>
+		<h1>CD listing</h1>
+		<table summary="track listing">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Track</th>
+					<th scope="col">Remove</th>
+				</tr>
+			</thead>
+			<tbody id="tracklisting">
+				<tr ng-repeat="track in myTracks">
+					<td>{{track.row}}</td>
+					<td><input ng-model="track.name"></td>
+					<td ng-click="removeTrack(track)">x</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<button ng-click="addTrack()">Add Track</button>
+	
+	<h2>JSON</h2>
+	<pre>{{myTracks | json}}</pre>
+</section>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+<script type="text/javascript">
+function FormCtrl($scope) {
+	
+	// track object
+	var Track = function(row, name){
+		this.row = row;
+		this.name = name;
+	}
+	
+	// add track
+	$scope.addTrack = function(){
+		$scope.myTracks.push( new Track($scope.myTracks.length+1,'') );
+	};
+	
+	// remove track
+	$scope.removeTrack = function(Track){
+		var index = $scope.myTracks.indexOf(Track);
+		$scope.myTracks.splice(index, 1);
+	};
+	
+	// JSON representation of tracks (normally provided by webservice)
+	$scope.myTracks = [
+		{"row":1, "name":"Mr Blue Sky"},
+		{"row":2, "name":"I am the Walrus"},
+		{"row":3, "name":"We Will Rock You"}
+	];
+}
+
+//FormCtrl.$inject = ['$scope'];
+</script>
