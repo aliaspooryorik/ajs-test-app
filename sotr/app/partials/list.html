@@ -1,0 +1,13 @@
+<p>This is the partial for view 1.</p>
+
+
+Day:
+<input type="radio" ng-model="dateFilter" value="2013-06-06"> 2013-06-06
+<input type="radio" ng-model="dateFilter" value="2013-06-07"> 2013-06-07
+<input type="radio" ng-model="dateFilter" value=""> both
+<ul>
+    <li ng-repeat="topic in topics | filter: { date: dateFilter } | orderBy: 'title'">
+        <a href="#/detail/{{topic.id}}">{{topic.title}}</a>
+    </li>
+</ul>
+Note: could add paging

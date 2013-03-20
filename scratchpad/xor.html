@@ -7,15 +7,16 @@
 
 <script>
 seed = [
-    {a:"",b:""},
-    {a:"asdad",b:""},
-    {a:"",b:"asdasdad"},
-    {a:"foo",b:"foo"}
+    {a:1,b:1},
+    {a:1,b:0},
+    {a:0,b:1},
+    {a:0,b:0}
 ];
 
 seed.forEach(
   function (element, index, array){
-      console.log(!element.a!=!element.b);
+      console.log(Boolean(element.a)!=Boolean(element.b)); //logical XOR
+     // console.log(element.a||element.b); //OR
   }
 );
 </script>

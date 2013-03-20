@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="vendor/angular.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
     <style>
         input {display:block}
         input.ng-invalid-required {background:lightpink;}
@@ -21,18 +21,26 @@
     <p ng-show="theForm.surname.$invalid && theForm.surname.$isdirty">surname is required</p>
 
     <input type="email" name="email" ng-model="user.email" placeholder="email" required>
-    <p ng-show="form.email.$invalid && form.email.$dirty">Email is required</p>
+    <p ng-show="theForm.email.$invalid && theForm.email.$dirty">Email is required</p>
 
-    <button>Submit</button>
+    <button ng-disabled="theForm.$invalid">{{submitText()}}</button>
 
-    <p>Is the form valid? {{theForm.$valid}}</p>
-    <p>form has errors@ {{theForm.$error}}</p>
+    <p>form state:<br>
+       valid: {{theForm.$valid}}<br>
+       invalid: {{theForm.$invalid}}</p>
 </form>
 
 <pre>{{user | json}}</pre>
 
 <script>
 function MyCtrl($scope){
+    $scope.submitText = function (){
+        if( $scope.theForm.$valid ){
+            return "submit me!";
+        }else{
+            return "uh-oh!";
+        }
+    }
     $scope.user = {
         forename: "John",
         surname: "Whish",
