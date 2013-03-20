@@ -17,7 +17,7 @@ app.factory('DataService', function (){
 
     return {
         get: function(index){
-            return topics.slice(index, index+1);
+            return topics[index];
         },
         all: function (){
             return topics;

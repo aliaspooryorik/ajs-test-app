@@ -9,8 +9,9 @@ function ListCtrl($scope,DataService){
     $scope.topics = DataService.all();
 }
 
-function DetailCtrl($scope, $routeParams){
-    $scope.topicId = $routeParams.topicId;
+function DetailCtrl($scope, $routeParams, DataService){
+    var topicId = $routeParams.topicId;
+    $scope.topic = DataService.get(topicId);
 }
 /*
 app.controller('DetailCtrl', function($scope){
