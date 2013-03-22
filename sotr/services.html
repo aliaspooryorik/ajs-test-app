@@ -7,22 +7,24 @@
         div { border:1px solid #d0d0d0; border-radius: 5px; padding:5px; box-shadow: 5px 5px 2px #888; margin-bottom:10px; }
     </style>
 </head>
-<body>
+<body ng-controller="MyCtrl">
 
-<div ng-controller="ListCtrl">
+<div >
     <ul ng-repeat="user in users">
         <li ng-click="show(user)">{{user.name}}</li>
     </ul>
 </div>
 
-<div class="nested" ng-controller="UserCtrl">
-    User: {{theUser.name}}, plays {{theUser.instrument}}
+<div>
+    User: {{selectedUser.name}}, plays {{selectedUser.instrument}}
 </div>
+
+
 
 <script>
 var app = angular.module("MyApp", []);
 // factory creates singleton
-app.factory("UserService", function() {
+app.factory("UserService", function ($rootScope) {
     var users = [
         {id:1, name:"John", instrument:"Guitar"},
         {id:2, name:"Paul", instrument:"Bass"},
@@ -32,20 +34,20 @@ app.factory("UserService", function() {
     return {
         all: function() {
             return users;
-        },
-        get: function(selectedUser) {
-            return users[selectedUser];
         }
     };
 });
 // note dependency injection
-app.controller("ListCtrl", function($scope, UserService) {
+app.controller("MyCtrl", function($scope, UserService) {
     $scope.users = UserService.all();
+    $scope.show = function (user){
+        // or could set in service...
+        $scope.selectedUser = user;
+    }
+
+    $scope.show($scope.users[0]);
 });
 
-app.controller("UserCtrl", function($scope, UserService) {
-    $scope.theUser = UserService.get(0);
-});
 </script>
 
 </body>
