@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Directive Example</title>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <style>
+        div { border:1px solid #d0d0d0; border-radius: 5px; padding:5px; box-shadow: 5px 5px 2px #888; margin-bottom:10px; }
+        my-widget {display:block; border:2px solid black}
+        .clicked { background-color: red; }
+
+    </style>
+</head>
+
+<body ng-app="MyApp">
+    <my-widget my-attribute></my-widget>
+</body>
+
+<script>
+var app = angular.module("MyApp", []);
+// note camel case myWidget becomes my-widget
+app.directive("myWidget", function () {
+    return {
+        restrict: "E", // E= element, A=Attribute, C=Class, M=Comment
+        template: "<h2>Scotch on the Rocks</h2><p>Welcome to Scotch on the Rocks</p>"
+    };
+});
+
+app.directive("myAttribute", function () {
+    return {
+        restrict: "A", // note A is default so could omit
+        link: function(scope, element, attributes){
+            element.on( "click", function() {   // note AngularJS is using jQuery
+                element.toggleClass("clicked").find('p').text("you clicked me!");
+                console.log("you clicked me");
+            });
+        }
+    }
+});
+</script>
+</html>

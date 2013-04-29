@@ -2,10 +2,23 @@
 
 /* Controllers */
 
-app.controller('ListCtrl', function($scope,DataService){
-    // TODO refactor to use service
+app.controller('ListCtrl', function ($scope,DataService){
+
     $scope.dateFilter = '';
-    $scope.topics = DataService.all();
+    $scope.maxrows = 2;
+    $scope.foobar= [{"heelo":true}];
+    DataService.list( function (data){
+        $scope.topics = data;
+    });
+
+    // used by pagination
+    $scope.numOfPages = 300;
+    $scope.currentPage = 1;
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
 });
 
 app.controller('DetailCtrl', function($scope, $routeParams, DataService){

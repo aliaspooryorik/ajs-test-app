@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <title>Services Example</title>
+    <script src="js/vendor/angular.min.js"></script>
+</head>
+<body ng-controller="MyCtrl">
+
+<ul>
+    <li ng-repeat="speaker in speakers | orderBy:'surname' | filter:name">
+        {{speaker.forename}} {{speaker.surname | uppercase}}
+    </li>
+</ul>
+
+
+<script>
+var app = angular.module("MyApp", []);
+// factory creates singleton
+app.factory("UserService", function () {
+    var speakers = [
+        {forename:'John', surname:'Whish'},
+        {forename:'Matt', surname:'Gifford'},
+        {forename:'Rob', surname:'Dudley'}
+    ];
+    return {
+        all: function() {
+            return speakers;
+        }
+    };
+});
+// note dependency injection
+function MyCtrl($scope,UserService){
+    $scope.speakers = UserService.all();
+}
+</script>
+
+</body>
+</html>

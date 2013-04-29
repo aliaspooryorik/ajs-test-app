@@ -1,0 +1,42 @@
+<html>
+
+<style>
+.status { background-color:blue }
+.status>div { display:inline; float:left; }
+.slidedeck {clear:both}
+#wrap-current-slide { background-color: red; width:640px; height:512px; overflow:hidden; float:left; }
+#wrap-next-slide { background-color: orange; width: 448px; height: 358px; overflow:hidden; float:right; }
+#notes { background-color:yellow; clear:both;}
+</style>
+<body>
+
+<div class="status">
+	<div class="clock">
+		<strong>Time</strong> <span id="clock">0:00:00 AM</span>
+	</div>
+	<div class="elapsed">
+		<strong>Elapsed</strong>
+		<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
+	</div>
+	<div class="progress">
+		<strong>Progress</strong>
+		<span id="slideIndex">0</span> of <span id="totalSlideCount">0</span>
+	</div>
+</div>
+
+<div class="slidedeck">
+	<div id="wrap-current-slide" class="slides">
+		<script>document.write( '<iframe width="1280" height="1024" id="current-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
+	</div>
+	<div id="wrap-next-slide" class="slides">
+		<script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
+		<span>UPCOMING:</span>
+	</div>
+</div>
+
+<div id="notes">
+	...loading
+</div>
+
+</body>
+</html>

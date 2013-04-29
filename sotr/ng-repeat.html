@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="js/vendor/angular.min.js"></script>
+</head>
+
+<body ng-app ng-controller="MyCtrl">
+
+<input type="text" ng-model="nameFilter">
+
+<ul>
+    <li ng-repeat="speaker in speakers | filter:nameFilter | orderBy:'surname'">
+        {{speaker.forename}} {{speaker.surname | uppercase }}
+    </li>
+</ul>
+
+</body>
+
+<script>
+    function MyCtrl ($scope) {
+        $scope.speakers = [
+            {forename:'John', surname:'Whish'},
+            {forename:'Matt', surname:'Gifford'},
+            {forename:'Rob', surname:'Dudley'}
+        ];
+    }
+</script>
+
+
+</html>

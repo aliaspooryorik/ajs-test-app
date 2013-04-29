@@ -8,18 +8,30 @@
 <body>
 
 <h2>Two Way Data Binding</h2>
+<quote>
+    Good rule of thumb - if you don't have a dot in there you're doing it wrong!
+    <br>- Miško Hevery
+</quote>
+
 <div ng-app ng-controller="MyCtrl">
-    <input type="text" ng-model="name">
-    <button ng-click="sayHi()">Toggle</button>
-    <p ng-show="isVisible">Hello {{name}}!</p>
+    <input type="text" ng-model="model.name">
+    <p>Hello {{model.name}}!</p>
+
+
+    <button ng-click="showDate()">Show Date</button>
+    <div ng-show="model.isVisible">{{ model.date | date:'dd/MM/yyyy h:mm:ss a'}}</div>
+    <!-- note: using angularjs'  format -->
 </div>
 
 <script>
+    // scope is a _shadow_ of parent (JavaScript prototypal inheritance)
     function MyCtrl ($scope){
-        $scope.name = 'SOTR';
-        $scope.isVisible = false;
-        $scope.sayHi = function() {
-            $scope.isVisible = !$scope.isVisible;
+        $scope.model = {};
+        $scope.model.name = 'SOTR';
+        $scope.model.date = new Date();
+        $scope.model.isVisible = false;
+        $scope.showDate = function() {
+            $scope.model.isVisible = !$scope.model.isVisible;
         }
     }
 </script>

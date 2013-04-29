@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>AngularJS - SOTR 2013</title>
+
+		<meta name="description" content="AngularJS - SOTR 2013">
+		<meta name="author" content="John Whish">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides"> 
+        
+		<section data-state="title">
+			<h3>I'm pretty sure HTML6 is going under the codename&hellip;</h3>
+            <div style="background-color: #eeeeee; border-radius:10px">
+				<img src="images/AngularJS-large.png" alt="AngularJS">
+            </div>
+		</section>
+		
+		<section data-state="intro">
+			<h1>Agenda</h1>
+			<div class="fragment">
+				<ul>
+                    <li>What is AngularJS?</li>
+					<li>Why AngularJS?</li>
+					<li>x</li>
+                    <li>Resources</li>
+                    <li>Q&A</li>
+				</ul>
+			</div>
+			<aside class="notes">
+				<ul>
+					<li>When I submitted this talk to the SOTR team, there were no books on AngularJS, now there are several so I recommend you read those and thanks for coming!</li>
+				</ul>
+			</aside>
+		</section>
+		
+		<section data-state="what">
+			<h1>What is AngularJS?</h1>
+			<div class="fragment">
+				<blockquote cite="http://angularjs.org/">
+                    Superheroic JavaScript MVW Framework
+				</blockquote>
+				<small>http://angularjs.org/</small>
+			</div>
+            <div class="fragment">
+                Model, View, Whatever
+            </div>
+            <aside class="notes">
+                <ul>
+                    <li>The slogan of AngularJS is Superheroic JavaScript MVW Framework</li>
+                    <li>MVW stands for Model, View, Whatever</li>
+                    <li>declarative programming for UI</li>
+                    <li>Imperative programming for model</li>
+                    <li>AngularJS is a client-side JavaScript framework that lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.</li>
+                </ul>
+            </aside>
+		</section>
+		
+        <section data-state="what">
+            <h1>What is AngularJS?</h1>
+            <div class="fragment">
+                <img src="images/twitter-quote.png" alt="twitter quote">
+                <small>https://twitter.com/aliaspooryorik/status/230405938597728256</small>
+            </div>
+
+            <aside class="notes">
+                <ul>
+                    <li>Mean; "enhanced" HTML </li>
+                    <li>Mean; templates written in HTML (not in JavaScript)</li>
+                    <li>Mean; Extend HTML with new tags</li>
+                    <li>Looks a bit like ColdFusion tags!</li>
+                    <li>HTML was designed for static websites. Now the web is a much richer place and you're probably using something like jQuery to manipulate your DOM and listen to events such as on click etc. Angular if you like extends HTML and gives it behaviour. It makes use of event listeners but these are abstracted away so you just get automatic two way data binding.....</li>
+                    <li>Have you ever wanted to have tabs on your website? With HTML you have a bunch of divs and CSS. With angular you can create an new HTML tag called "tabs" if you wanted.</li>
+                </ul>
+            </aside>
+        </section>
+        <section data-state="why">
+            <h1>Why AngularJS?</h1>
+            <div class="fragment">
+                <p>Server Side terms</p>
+                <ul>
+                    <li>MVC</li>
+                    <li>Routing</li>
+                    <li>Testing</li>
+                    <li>Dependency Injection</li>
+                    <li>Factories / Services / Validation</li>
+                    <li>Modules</li>
+                </ul>
+            </div>
+            <div class="fragment">
+                <p>Client Side terms</p>
+                <ul>
+                    <li>2-Way Data Binding</li>
+                    <li>Filters</li>
+                    <li>Directives</li>
+                    <li>History</li>
+                    <li>Integrates with jQuery ()</li>
+                </ul>
+            </div>
+
+            <aside class="notes">
+                <ul>
+
+                </ul>
+            </aside>
+        </section>
+        <section data-state="why">
+			<h1>Activity</h1>
+            <ul>
+                <li class="fragment"><img src="images/google-plus-icon.png" alt="Google +"> <span class="fragment">3,597 members</span></li>
+                <li class="fragment"><img src="images/youtube-icon.png" alt="YouTube"> <span class="fragment">8,993 subscribers</span></li>
+                <li class="fragment"><img src="images/github-icon.png" alt="Github"> <span class="fragment">9,136 stars (1,761 forks)</span></li>
+                <li class="fragment"><img src="images/twitter-icon.png" alt="Twitter"> <span class="fragment">13,077 followers</span></li>
+            </ul>
+            <div class="fragment">
+                <h3>ColdFusion</h3>
+                <ul>
+                    <li><img src="images/twitter-icon.png" alt="Twitter"> 7,940</li>
+                    <li><img src="images/youtube-icon.png" alt="YouTube"> 367</li>
+                </ul>
+
+            </div>
+
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+		</section>
+		<section data-state="why">
+			<h1>Adoption</h1>
+			<div class="fragment">
+				  <img src="images/framework-comparison.png" alt="framework-comparision">
+                <p><small>http://www.infoq.com/research/top-javascript-mvc-frameworks</small></p>
+            </div>
+			<aside class="notes">
+				<ul>
+					<li>Top JavaScript MVC Frameworks poll on InfoQ</li>
+				</ul>
+			</aside>
+		</section>
+		<section data-state="example">
+			<h1>Expressions</h1>
+			<div class="fragment">
+				<pre><code data-language="html">&lt;html&gt;
+&lt;body ng-app&gt;
+&lt;p&gt;This is your first angular expression: {{ 1 + 2 }}&lt;/p&gt;
+&lt;script src="angular.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+			</div>
+			<p class="caption fragment" style="top:130px; left:335px;">expression &darr;</p>
+
+			<div class="fragment" data-example="SimpleExampleApp">
+                This is your first angular expression: {{ 1 + 2 }}
+            </div>
+			<aside class="notes">
+				<ul>
+					<li></li>
+				</ul>
+			</aside>
+		</section>
+        <section data-state="example">
+            <h1>Data Binding</h1>
+            <div class="fragment">
+				<pre><code data-language="html">&lt;html&gt;
+&lt;body ng-app&gt;
+Enter your name: &lt;input type="text" ng-model="name"&gt;
+&lt;p&gt;Hello {{name}}!&lt;/p&gt;
+&lt;script src="angular.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <p class="caption fragment" style="top:130px; left:335px;">binding name &darr;</p>
+            <p class="caption fragment" style="top:230px; left:135px;">&uarr; bound variable</p>
+
+            <div class="fragment" data-example="BindingExampleApp">
+                Enter your name: <input type="text" ng-model="name">
+                <p>Hello {{name}}!</p>
+            </div>
+            <aside class="notes">
+                <ul>
+                    <li></li>
+                </ul>
+            </aside>
+        </section>
+
+        <section data-state="resources">
+			<h1>Resources</h1>
+			<ul>
+				<li>Official Website<br>
+					<small><a href="http://angularjs.org/">http://angularjs.org/</a></small></li>
+				<li>Community<br>
+					<small><a href="https://plus.google.com/+AngularJS/">https://plus.google.com/+AngularJS/</a></small></li>
+				<li>Video<br>
+					<small><a href="http://www.youtube.com/user/angularjs">http://www.youtube.com/user/angularjs</a></small><br>
+                    <small><a href="http://www.egghead.io/">http://www.egghead.io/</a></small>
+                </li>
+            </ul>
+			<aside class="notes">
+				<ul>
+					<li>Official website contains download, docs, examples and a tutorial</li>
+				</ul>
+			</aside>
+		</section>
+		<section data-state="resources">
+			<h1>Books</h1>
+			<ul>
+				<li>AngularJS in Action<br>
+					<small><a href="http://www.manning.com/bford/">http://www.manning.com/</a></small></li>
+				<li>Instant AngularJS Starter<br>
+					<small><a href="http://www.packtpub.com/angularjs-to-build-dynamic-web-applications/book">http://www.packtpub.com/</a></small></li>
+				<li>AngularJS<br>
+					<small><a href="http://shop.oreilly.com/product/0636920028055.do">http://shop.oreilly.com/</a></small></li>
+				<li>Recipes with Angular.js<br>
+					<small><a href="https://leanpub.com/recipes-with-angular-js">https://leanpub.com/</a></small></li>
+			</ul>
+            <aside class="notes">
+                <ul>
+                    <li>AngularJS in Action is a MEAP</li>
+                    <li>Recipes with Angular is a incomplete</li>
+                </ul>
+            </aside>
+		</section>
+		<section data-state="end">
+			<h1>Thank You!</h1>
+			<ul>
+				<li>Me: John Whish</li>
+				<li>AKA: Aliaspooryorik</li>
+				<li>Web: www.aliaspooryorik.com</li>
+				<li>Twitter: @aliaspooryorik</li>
+				<li>Slide Deck<br>
+					<small><a href="http://www.aliaspooryorik.com/presentations/angularjs2013/">http://www.aliaspooryorik.com/presentations/angularjs2013/</a></small></li>
+			</ul>
+			<img src="images/aliaspooryorik-logo.jpg" alt="stick man" style="margin-top:10px;">
+		</section>
+    </div>
+	
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+			// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+		]
+	});
+
+</script>
+
+</body>
+</html>

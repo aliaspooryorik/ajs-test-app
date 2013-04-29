@@ -6,8 +6,21 @@ Day:
 <input type="radio" ng-model="dateFilter" value="2013-06-07"> 2013-06-07
 <input type="radio" ng-model="dateFilter" value=""> both
 <ul>
-    <li ng-repeat="topic in topics | filter: { date: dateFilter } | orderBy: 'title'">
-        <a href="#/detail/{{topic.id}}">{{topic.title}}</a>
+    <li ng-repeat="topic in topics | filter: { date: dateFilter } | orderBy: AgendaStartTime">
+        <a href="#/detail/{{$index}}">{{topic.AgendaName}} - {{topic.AgendaLoc}} : {{topic.AgendaStartTime*1000 | date:'medium'}}</a>
     </li>
 </ul>
+ list.html = {{numOfPages}}<br>
+<paging num-of-pages="{{numOfPages}}"></paging>
+
+
+<span ng-non-bindable>{{"1370506200" | date:'medium'}}</span>:
+{{"1370506200" | date:'medium'}}<br>
+<span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
+{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}<br>
+<span ng-non-bindable>{{1288323623006 | date:'MM/dd/yyyy @ h:mma'}}</span>:
+{{'1288323623006' | date:'MM/dd/yyyy @ h:mma'}}<br>
+<!-- note: uses http://angular-ui.github.com/bootstrap/ -->
+<!-- <pagination num-pages="noOfPages" current-page="currentPage"></pagination> -->
 Note: could add paging
+<pre>{{topics | json }}</pre>

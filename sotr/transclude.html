@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="js/vendor/angular.min.js"></script>
+</head>
+<body ng-app="MyApp" ng-controller="TranscludeCtrl">
+
+<callout>
+    <h1>My Title</h1>
+</div>
+
+<script>
+app = angular.module('MyApp', []);
+
+app.controller('TranscludeCtrl', function(){
+
+})
+
+
+app.directive("callout", function (){
+  return {
+      restrict: "E",
+      transclude: true,
+      template: "<p>HTML from page injected into directive</p>" +
+              "<div ng-transclude>appended to this div</div>" +
+              "<p>can have more here</p>"
+
+
+  }
+});
+</script>
+
+</body>
+</html>

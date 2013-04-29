@@ -1,0 +1,24 @@
+<html>
+<body>
+<div id="ThisApp">
+    Enter your name: <input type="text" ng-model="name">
+    <p>Hello {{name}}!</p>
+</div>
+
+<div id="ThatApp">
+    Enter your name: <input type="text" ng-model="name">
+    <p>Hello {{name}}!</p>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/angular.js"></script>
+<script>
+angular.module('ThisApp', []);
+angular.bootstrap($('#ThisApp'),['ThisApp']);
+
+angular.module('ThatApp', []);
+angular.bootstrap($('#ThatApp'),['ThatApp']);
+</script>
+
+</body>
+</html>

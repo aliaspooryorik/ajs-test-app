@@ -10,6 +10,8 @@
 <body ng-controller="MyCtrl">
 
 <div >
+    <!-- could use limitTo as well -->
+    <!-- could use orderBy as well -->
     <ul ng-repeat="user in users">
         <li ng-click="show(user)">{{user.name}}</li>
     </ul>

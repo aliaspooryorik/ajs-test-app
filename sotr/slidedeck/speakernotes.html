@@ -1,0 +1,87 @@
+<!doctype html>  
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Slide Commentary</title>
+	<style>
+		body { font-family:Arial, Helvetica, sans-serif; font-size:12px; }
+		h1 { font-family:Tahoma; font-size:3em; margin-top: 0; }
+		p, li { font-size:2em; }
+		p { margin-bottom: 0; }
+		#currentslide { border:5px solid red; }
+		#nextslide { border:5px solid #d0d0d0; color:#d0d0d0; }
+	</style>
+</head>
+<body>
+	<div id="currentslide"></div>
+	<div id="nextslide"></div>
+</body>
+</html>
+
+<!--
+Cut the CRUD
+
+CRUD
+- What is it?
+-- Create, Read, Update, Delete
+-- in SQL terms Insert, Select, Update, Delete (ISUD isn't as catchy!)
+-- repetitive & boring
+
+DataMgr : http://www.aliaspooryorik.com/blog/index.cfm/e/posts.details/post/129
+- what is it
+-- Appeared in 2006
+-- ColdFusion MX 6.1 + / Railo 3+
+-- Works with MS SQL Server, MySQL (and variants such as MariaDB), Oracle, PostgreSQL, Apache Derby & MS Access
+-- recordset based
+
+- examples
+-- instantiation: Application.DataMgr = CreateObject("component","DataMgr").init("mydsn")
+-- Create: insertRecord(_table_, {data} ) <- returns pk
+-- Read: getRecords(_table_, {data} ) <- returns recordset
+-- Update: updateRecord(_table_, data)<- returns pk
+-- Delete: deleteRecord(_table_, {data} ) <!- deletes single record
+
+- beyond the CRUD
+-- saveRecord(_table_,{data})<- returns pk
+-- deleteRecords(_table_) <- deletes multiple records
+-- updateRecords(_table_) <- updates multiple records
+
+* can do soft deletes
+
+ORM :
+- what is it
+-- Native to ColdFusion 9+ / Railo 3.3+
+-- Works with MS SQL Server, MySQL (and variants such as MariaDB), Oracle, PostgreSQL, Apache Derby
+-- Does not support MS Access
+-- object based
+-- based on Hibernate
+
+
+- examples
+-- instantiation: this.ormenabled = true
+-- Create: EntitySave(_obj_)
+-- Read: EntityLoad(_entityname_, {data} ) <- returns array
+-- Update: EntitySave( obj)
+-- Delete: EntityDelete(obj)
+
+-- EntityLoadByPK(_entityname_, id) <- returns obj
+
+Further Reading:
+
+DataMgr:
+    http://datamgr.riaforge.org/
+    http://www.bryantwebconsulting.com/cfcs/#DataMgr
+    https://groups.google.com/forum/?fromgroups#!forum/datamgr
+
+ORM
+    http://help.adobe.com/en_US/ColdFusion/9.0/Developing/WSD628ADC4-A5F7-4079-99E0-FD725BE9B4BD.html
+    http://www.learncfinaweek.com/week1/Intro_to_ORM/
+    https://groups.google.com/forum/?fromgroups#!forum/cf-orm-dev
+    
+
+
+Q&A
+- open floor
+
+
+-->
