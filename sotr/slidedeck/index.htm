@@ -19,6 +19,36 @@
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<style type="text/css">
+		iframe {width: 863px; background-color:pink; border:1px solid #ddd }
+		
+		.reveal .slides p.caption {
+			background-color:yellow;
+			color:#101010; 
+			position:absolute; 
+			padding:0px 10px 5px 10px;
+			box-shadow: 5px 5px 5px #777;
+			border-radius: 5px;
+			text-transform:lowercase;
+		}
+		.reveal .slides p.script-name {
+			background-color:#d0d0d0;
+			color:#101010; 
+			position:absolute;
+			right:50px; 
+			padding:5px 10px 5px 10px;
+			box-shadow: 5px 5px 5px #777;
+			border-radius: 5px;
+		}
+		.reveal .slides div.box-highlight {
+			border:4px solid yellow;
+			position:absolute; 
+			padding:5px 10px 5px 10px;
+			border-radius: 5px;
+			box-shadow: 3px 3px 8px #777;
+		}
+		</style>
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
@@ -176,10 +206,9 @@
 &lt;/html&gt;</code></pre>
 			</div>
 			<p class="caption fragment" style="top:130px; left:335px;">expression &darr;</p>
-
-			<div class="fragment" data-example="SimpleExampleApp">
-                This is your first angular expression: {{ 1 + 2 }}
-            </div>
+			
+			<iframe class="fragment" src="examples/expression.html"></iframe>
+			
 			<aside class="notes">
 				<ul>
 					<li></li>
@@ -200,17 +229,142 @@ Enter your name: &lt;input type="text" ng-model="name"&gt;
             <p class="caption fragment" style="top:130px; left:335px;">binding name &darr;</p>
             <p class="caption fragment" style="top:230px; left:135px;">&uarr; bound variable</p>
 
-            <div class="fragment" data-example="BindingExampleApp">
-                Enter your name: <input type="text" ng-model="name">
-                <p>Hello {{name}}!</p>
-            </div>
+            <iframe class="fragment" src="examples/databinding.html"></iframe>
+			
             <aside class="notes">
                 <ul>
                     <li></li>
                 </ul>
             </aside>
         </section>
+		
+		<section data-state="example">
+            <h1>jQuery Comparission</h1>
+			
+			<div class="fragment">
+				<pre><code data-language="javascript">&lt;html&gt;
+&lt;body ng-app&gt;
+Enter your name: &lt;input type="text" id="model-name"&gt;
+&lt;p&gt;Hello &lt;span id="name"&gt;&lt;/span&gt;!&lt;/p&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+jQuery( function ($){
+  $('#model-name').on('keyup', function (){
+    $('#name').text($(this).val());
+  });
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+		</section>
 
+		<section data-state="example">
+            <h1>Templating</h1>
+			
+			<div class="fragment">
+				<pre><code data-language="javascript">&lt;html&gt;
+&lt;body ng-app&gt;
+&lt;ul&gt;
+  &lt;li ng-repeat="who in ['John','Andy',Matt']"&gt;{{who}}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script src="angular.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+			
+			<iframe class="fragment" src="examples/ng-repeat.html"></iframe>
+		</section>
+
+		<section data-state="example">
+            <h1>Model-View Glue</h1>
+			
+			<div class="fragment">
+				<pre><code data-language="javascript">&lt;ul ng-app ng-controller="MyCtrl"&gt;
+  &lt;li ng-repeat="who in speakers"&gt;
+	{{who.surname}}, {{who.forename}}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+function MyCtrl ($scope) {
+  $scope.speakers = [
+    {forename:'John', surname:'Whish'},
+    {forename:'Matt', surname:'Gifford'},
+    {forename:'Rob', surname:'Dudley'}
+  ];
+}
+&lt;/script&gt;</code></pre>
+
+				<p class="caption fragment" style="top:110px; left:400px;">&darr; controller binding</p>
+
+				<div class="box-highlight fragment" style="top: 328px;left: 70px;width: 510px;height: 110px;">
+					<p class="caption" style="top:30px; right:-100px;">model</p>
+				</div>
+
+				<p class="caption fragment" style="top:255px; left:290px;">&darr; DI</p>
+            </div>
+			
+			<iframe class="fragment" src="examples/scope.html"></iframe>
+			
+			<aside class="notes">
+			Having data in the view is bad. Want it in the model
+			I've removed the html / body tags for clarity<br>
+			Note the ng-controller directive<br>
+			Note $scope is automatically injected into the controller (DI)<br>
+			Note $scope is automatically injected into the view<br>
+			speakers in the view is the same as $scope.speakers in model<br>
+			</aside>
+		</section>
+		
+		<section data-state="example">
+            <h1>Filters</h1>
+			
+			<pre><code>&lt;div ng-app ng-controller=&quot;MyCtrl&quot;&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;
+  &lt;ul&gt;
+    &lt;li ng-repeat=&quot;speaker in speakers | orderBy: &#39;surname&#39; | filter: name&quot;&gt;
+    {{speaker.surname}}, {{speaker.forename}}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+function MyCtrl ($scope) {
+  $scope.speakers = [
+    {forename:&#39;John&#39;, surname:&#39;Whish&#39;},
+    {forename:&#39;Matt&#39;, surname:&#39;Gifford&#39;},
+    {forename:&#39;Rob&#39;, surname:&#39;Dudley&#39;}
+  ];
+}
+&lt;/script&gt;
+			</code></pre>
+			
+			<iframe class="fragment" src="examples/filters.html"></iframe>
+		</section>
+		
+		<section data-state="example">
+            <h1>"Hello World" JS MV*</h1>
+			
+			<pre><code>&lt;div ng-app ng-controller=&quot;MyCtrl&quot;&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;
+  &lt;ul&gt;
+    &lt;li ng-repeat=&quot;speaker in speakers | orderBy: &#39;surname&#39; | filter: name&quot;&gt;
+    {{speaker.surname}}, {{speaker.forename}}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;script&gt;
+function MyCtrl ($scope) {
+  $scope.speakers = [
+    {forename:&#39;John&#39;, surname:&#39;Whish&#39;},
+    {forename:&#39;Matt&#39;, surname:&#39;Gifford&#39;},
+    {forename:&#39;Rob&#39;, surname:&#39;Dudley&#39;}
+  ];
+}
+&lt;/script&gt;
+			</code></pre>
+			
+			<iframe class="fragment" src="examples/filters.html"></iframe>
+		</section>
+		
+		
         <section data-state="resources">
 			<h1>Resources</h1>
 			<ul>
@@ -229,6 +383,7 @@ Enter your name: &lt;input type="text" ng-model="name"&gt;
 				</ul>
 			</aside>
 		</section>
+		
 		<section data-state="resources">
 			<h1>Books</h1>
 			<ul>

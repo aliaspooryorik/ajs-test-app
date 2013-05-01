@@ -1,0 +1,31 @@
+<html>
+<link rel="stylesheet" href="css/styles.css">
+<body ng-app="TodoApp" ng-controller="TodoCtrl">
+
+<input type="text" ng-model="todo">
+<button ng-click="add()">add</button>
+
+<div ng-repeat="task in tasks | orderBy: 'done'">
+  <input type="checkbox" ng-model="task.done">
+  <span class="done-{{task.done}}">{{task.name}}</span>
+</li>
+
+<script src="js/angular.js"></script>
+<script>
+var app = angular.module('TodoApp', []);
+app.controller('TodoCtrl', function ($scope) {
+  $scope.tasks = [
+    {name:'Win Lottery', done:false},
+    {name:'Find passport', done:true}
+  ];
+  $scope.add = function (){
+    $scope.tasks.push(
+	  {name:$scope.todo, done:false}
+	);
+	$scope.todo = '';
+  }
+});
+</script>
+
+</body>
+</html>

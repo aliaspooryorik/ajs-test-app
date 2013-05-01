@@ -40,7 +40,6 @@
 			#wrap-next-slide {
 				width: 448px;
 				height: 358px;
-				float: right;
 				margin: 0 0 0 10px;
 				overflow: hidden;
 			}
@@ -92,14 +91,12 @@
 				font-family: monospace;
 			}
 
-			.slidedeck {clear:both}
+			.slidedeck {height:520px;}
 			
 			.status {
 				margin-bottom: 10px;
 				text-align: center;
 				opacity: 0;
-				background-color: #eee;
-				height:70px;
 
 				-webkit-transition: opacity 0.4s;
 				   -moz-transition: opacity 0.4s;
@@ -113,12 +110,12 @@
 				color: #333;
 				font-size: 2em;
 				text-align: center;
-				display: inline-block;
-				padding: 10px;
+				padding: 5px;
 				background-color: #ddd;
 				border-radius: 10px;
-				margin-right:5px;
-				float:left;
+				margin-left:10px;
+				margin-top:5px;
+				width: 438px;
 			}
 
 			.status strong {
@@ -129,7 +126,7 @@
 			}
 
 			.elapsed .mute {
-				color: #ddd;
+				color: #ccc;
 			}
 			
 			#notes { background-color:yellow; clear:both;}
@@ -138,33 +135,36 @@
 	</head>
 
 	<body>
-
-		<div class="status">
-			<div class="clock">
-				<strong>Time</strong> <span id="clock">0:00:00 AM</span>
-			</div>
-			<div class="elapsed">
-				<strong>Elapsed</strong>
-				<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
-			</div>
-			<div class="progress">
-				<strong>Progress</strong>
-				<span id="slideIndex">0</span> of <span id="totalSlideCount">0</span>
-			</div>
-		</div>
-
+		
 		<div class="slidedeck">
 			<div id="wrap-current-slide" class="slides">
 				<script>document.write( '<iframe width="1280" height="1024" id="current-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
 			</div>
-			<div id="wrap-next-slide" class="slides">
-				<script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
-				<span>UPCOMING:</span>
+		
+			<div style="float:right;">
+				<div id="wrap-next-slide" class="slides">
+					<script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ window.opener.location.href +'"></iframe>' );</script>
+					<span>UPCOMING:</span>
+				</div>
+				
+				<div class="status">
+					<div class="progress">
+						<strong>Progress</strong>
+						<span id="slideIndex">0</span> of <span id="totalSlideCount">0</span>
+					</div>
+					<div class="clock">
+						<strong>Time</strong> <span id="clock">0:00:00 AM</span>
+					</div>
+					<div class="elapsed">
+						<strong>Elapsed</strong>
+						<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<div id="notes"></div>
 		
+		<div id="notes">...loading...</div>
+			
 		<script src="../../plugin/markdown/showdown.js"></script>
 		<script>
 
@@ -203,7 +203,7 @@
 							// Update the note slides
 							currentSlide.contentWindow.Reveal.slide( data.indexh, data.indexv );
 							nextSlide.contentWindow.Reveal.slide( data.nextindexh, data.nextindexv );
-							slideIndex.innerHTML = data.indexh;
+							slideIndex.innerHTML = data.indexh + 1; // slides zero based
 						}
 
 					}, false );
@@ -238,7 +238,6 @@
 
 					// Navigate the main window when the notes slide changes
 					currentSlide.contentWindow.Reveal.addEventListener( 'slidechanged', function( event ) {
-console.log(window.opener.document.querySelectorAll('section'));
 						window.opener.Reveal.slide( event.indexh, event.indexv );
 
 					} );

@@ -1,0 +1,24 @@
+<html>
+<link rel="stylesheet" href="css/styles.css">
+<body ng-app ng-controller="MyCtrl">
+
+<input type="text" ng-model="name">
+
+<ul>
+    <li ng-repeat="speaker in speakers | orderBy: 'surname' | filter: name">
+		{{speaker.surname}}, {{speaker.forename}}</li>
+</ul>
+
+<script src="js/angular.js"></script>
+<script>
+function MyCtrl ($scope) {
+	$scope.speakers = [
+		{forename:'John', surname:'Whish'},
+		{forename:'Matt', surname:'Gifford'},
+		{forename:'Rob', surname:'Dudley'}
+	];
+}
+</script>
+
+</body>
+</html>
